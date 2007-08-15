@@ -1,8 +1,8 @@
 ﻿/*
 * 
 * + Thai.as (Sleepy Type Tool) version 1.3.3
-* 		- online service : http://services.sleepydesign.com/typetool/
-*		- source : http://code.google.com/p/sleepytypetool/
+*   - Online Service : http://services.sleepydesign.com/typetool/
+*   - Source Code : http://code.google.com/p/sleepytypetool/
 * 
 */
  
