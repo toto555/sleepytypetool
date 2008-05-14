@@ -166,7 +166,7 @@ package com.sleepydesign.text
 			return resultString;
 		}
 		
-		public function getEmbedString():Thai {
+		public function getEmbedString():String {
 			var resultString:String = "";
 			//normal
 			for (var i = 20; i<255; i++) {
@@ -700,7 +700,7 @@ package com.sleepydesign.text
 		
 		//_________________________________________________________________________constructor
 		
-		public function Thai(inputString:String, inputThaiStyle:Object=null) {
+		public function Thai(inputString:String="", inputThaiStyle:Object=null) {
 			
 			//__________________________________________________________set style
 			
