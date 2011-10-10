@@ -5,14 +5,14 @@
 	public class ThaiUtil
 	{
 		// input
-		public static const DS_FAMILY:String = "ds";
-		public static const PSL_AD_FAMILY:String = "psl_ad";
-		public static const PSL_SP_FAMILY:String = "psl_sp";
+		public static const INPUT_DS_FAMILY:String = "ds";
+		public static const INPUT_PSL_AD_FAMILY:String = "psl_ad";
+		public static const INPUT_PSL_SP_FAMILY:String = "psl_sp";
 		
 		// output
-		public static const ASCII_PS7:String = "ascii_ps7";
-		public static const MULTIBYTE:String = "multibyte";
-		public static const MULTIBYTE_CS:String = "multibyte_cs";
+		public static const OUTPUT_MULTIBYTE:String = "multibyte";
+		public static const OUTPUT_MULTIBYTE_CS:String = "multibyte_cs";
+		public static const OUTPUT_ASCII_PS7:String = "ascii_ps7";
 		
 		//____________________________________________________________style
 
@@ -334,17 +334,17 @@
 			}
 			if (inputThaiStyle.fontFamily == null)
 			{
-				inputThaiStyle.fontFamily = PSL_AD_FAMILY;
+				inputThaiStyle.fontFamily = INPUT_PSL_SP_FAMILY;
 			}
 			//result                
 			//setFontFamily
 			setFontFamily(inputThaiStyle.fontFamily);
 			//prepare asciiToUnicode
-			if (inputThaiStyle.fontFamily == PSL_AD_FAMILY)
+			if (inputThaiStyle.fontFamily == INPUT_PSL_AD_FAMILY)
 			{
 				switch (inputThaiStyle.outputType)
 				{
-					case MULTIBYTE_CS:
+					case OUTPUT_MULTIBYTE_CS:
 						target = removeCSChr(target);
 						_YOYING_PS7 = asciiToUnicode(_YOYING_PS7);
 						_YOYING_NOTAIL = asciiToUnicode(_YOYING_NOTAIL);
@@ -360,7 +360,7 @@
 						//aumCombo[1] = asciiToUnicode(aumCombo[1]);
 						_AUM_COMBO = asciiToUnicode(_AUM_COMBO);
 						break;
-					case ASCII_PS7:
+					case OUTPUT_ASCII_PS7:
 						target = removePS7Chr(target);
 						break;
 				}
@@ -429,14 +429,14 @@
 				//grab                
 				resultString += char;
 			}
-			if (inputThaiStyle.fontFamily != PSL_AD_FAMILY)
+			if (inputThaiStyle.fontFamily != INPUT_PSL_AD_FAMILY)
 			{
 				switch (inputThaiStyle.outputType)
 				{
-					case MULTIBYTE_CS:
+					case OUTPUT_MULTIBYTE_CS:
 						resultString = removeCSChr(resultString);
 						break;
-					case ASCII_PS7:
+					case OUTPUT_ASCII_PS7:
 						//need fix
 						resultString = removePS7Chr(resultString);
 						break;
@@ -569,10 +569,10 @@
 			//outputType : multibyte_cs, ascii_ps7, multibyte
 			switch (_thaiStyle.outputType)
 			{
-				case MULTIBYTE_CS:
+				case OUTPUT_MULTIBYTE_CS:
 					resultString = csChr(target);
 					break;
-				case ASCII_PS7:
+				case OUTPUT_ASCII_PS7:
 					resultString = ps7Chr(target);
 					break;
 				default:
@@ -588,13 +588,13 @@
 			return resultString;
 		}
 
-		private static function setFontFamily(fontFamily:String = PSL_AD_FAMILY):void
+		private static function setFontFamily(fontFamily:String = INPUT_PSL_SP_FAMILY):void
 		{
 			_thaiStyle.fontFamily = fontFamily;
 			
 			switch (fontFamily)
 			{
-				case DS_FAMILY:
+				case INPUT_DS_FAMILY:
 					//ยกเว้น อ่อ้อ๊อ๋อ์
 					//highTone = วรรณยุกต์ = ป่ำป้ำป๊ำป๋ำ
 					_HIGHTONE = new String(String.fromCharCode(0x203A) + String.fromCharCode(0x0153) + String.fromCharCode(0x009D) + String.fromCharCode(0x009D) + String.fromCharCode(0xF717) + String.fromCharCode(0x2122) + String.fromCharCode(0x0161));
@@ -614,7 +614,7 @@
 					_YOYING_NOTAIL = new String(String.fromCharCode(0x0090));
 					_THOTHAN_NOTAIL = new String(String.fromCharCode(0x0080));
 					break;
-				case PSL_AD_FAMILY:
+				case INPUT_PSL_AD_FAMILY:
 					//highTone = วรรณยุกต์ = ป่ำป้ำป๊ำป๋ำ
 					_HIGHTONE = new String(String.fromCharCode(0x009B) + String.fromCharCode(0x009C) + String.fromCharCode(0x009D) + String.fromCharCode(0x009E) + String.fromCharCode(0x009F) + String.fromCharCode(0x0E4D) + String.fromCharCode(0x0E47));
 					//lowTone
@@ -631,7 +631,7 @@
 					_YOYING_NOTAIL = new String(String.fromCharCode(0xF090));
 					_THOTHAN_NOTAIL = new String(String.fromCharCode(0xF080));
 					break;
-				case PSL_SP_FAMILY:
+				case INPUT_PSL_SP_FAMILY:
 					//highTone = วรรณยุกต์ = ป่ำป้ำป๊ำป๋ำ
 					_HIGHTONE = new String(String.fromCharCode(0xF713) + String.fromCharCode(0xF714) + String.fromCharCode(0xF715) + String.fromCharCode(0xF716) + String.fromCharCode(0xF717) + String.fromCharCode(0x0E4D) + String.fromCharCode(0x0E47));
 					//lowTone
@@ -657,7 +657,7 @@
 			//__________________________________________________________default style
 
 			//fontFamily
-			_thaiStyle.fontFamily = PSL_SP_FAMILY;
+			_thaiStyle.fontFamily = INPUT_PSL_SP_FAMILY;
 			//fix
 			_thaiStyle.isFixFloat = true;
 			_thaiStyle.isFixTail = true;
@@ -667,7 +667,7 @@
 			_thaiStyle.isFixYoyingTail = true;
 			_thaiStyle.isFixLineFeed = false;
 			//outputType : multibyte, multibyte_cs, ascii_ps7
-			_thaiStyle.outputType = MULTIBYTE;
+			_thaiStyle.outputType = OUTPUT_MULTIBYTE;
 
 			//__________________________________________________________custom style
 
