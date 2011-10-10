@@ -1,7 +1,7 @@
 package
 {
 	import com.sleepydesign.utils.ThaiUtil;
-
+	
 	import flash.display.Sprite;
 	import flash.text.StyleSheet;
 	import flash.text.TextField;
@@ -11,7 +11,7 @@ package
 	public class TestDynamicEmbedText extends Sprite
 	{
 		[Embed(source = "C:\\Windows\\Fonts\\PSL029SP.TTF", mimeType = "application/x-font", fontName = "PSL DisplaySP", embedAsCFF = "false")]
-		public var tahoma:Class;
+		public var font_clazz:Class;
 
 		public function TestDynamicEmbedText()
 		{
@@ -19,7 +19,7 @@ package
 			var tf:TextField;
 			addChild(tf = new TextField);
 			tf.autoSize = TextFieldAutoSize.LEFT;
-
+			
 			// embed
 			tf.embedFonts = true;
 			tf.styleSheet = new StyleSheet();
@@ -27,6 +27,11 @@ package
 
 			// fix
 			tf.htmlText = "<p>" + ThaiUtil.fix("ก่า") + "abc</p>";
+			
+			// test success embed
+			tf.x = stage.stageWidth*.5;
+			tf.y = stage.stageHeight*.5;
+			tf.rotation = 45;
 		}
 	}
 }
